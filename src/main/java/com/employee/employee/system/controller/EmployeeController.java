@@ -1,6 +1,7 @@
 package com.employee.employee.system.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.lang.NonNull;
@@ -31,7 +32,12 @@ public class EmployeeController {
         return employeeRepo.save(employee);
     }
 
-    @PutMapping
+    @GetMapping(value = "/{id}")
+    public Optional<Employee> findOne(Employee employee){
+        return employeeRepo.findById(employee.getEmpId());
+    }
+    
+    @PutMapping("{id}")
     public Employee update(@Validated @NonNull @RequestBody Employee employee){
         return employeeRepo.save(employee);
     }
